@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario Sistema de Gestión</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1><i class="fas fa-boxes"></i> Sistema de Inventario</h1>
+            <div class="header-actions">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar productos...">
+                </div>
+            </div>
+        </header>
+        
+        <div class="toolbar">
+            <button id="addProductBtn" class="btn-primary">
+                <i class="fas fa-plus"></i> Nuevo Producto
+            </button>
+            <button id="importExcelBtn" class="btn-secondary">
+                <i class="fas fa-file-import"></i> Importar
+            </button>
+            <button id="exportExcelBtn" class="btn-secondary">
+                <i class="fas fa-file-export"></i> Exportar
+            </button>
+        </div>
+        
+        <div class="inventory-container">
+            <table id="inventoryTable">
+                <thead>
+                    <tr>
+                        <th>ID <i class="fas fa-sort"></i></th>
+                        <th>Producto <i class="fas fa-sort"></i></th>
+                        <th>Cantidad <i class="fas fa-sort"></i></th>
+                        <th>Categoría <i class="fas fa-sort"></i></th>
+                        <th>Notas</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTableBody">
+                    <!-- Los productos se cargarán aquí -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="productModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><span id="modalTitle">Agregar Producto</span></h2>
+                    <span class="close">&times;</span>
+                </div>
+                <form id="productForm">
+                    <input type="hidden" id="productId">
+                    
+                    <div class="form-group">
+                        <label for="productName">Nombre del Producto</label>
+                        <input type="text" id="productName" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productQuantity">Cantidad</label>
+                            <input type="number" id="productQuantity" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Categoría</label>
+                            <input type="text" id="productCategory">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productNotes">Notas/Observaciones</label>
+                        <textarea id="productNotes" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel">Cancelar</button>
+                        <button type="submit" class="btn-submit">Guardar Producto</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <input type="file" id="excelFileInput" style="display: none;" accept=".xlsx, .xls">
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
